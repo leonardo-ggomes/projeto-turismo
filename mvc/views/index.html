@@ -21,17 +21,18 @@
           <h5 class="card-title">Perentino</h5>
           <p class="card-text">Acesse a maior história de conhecimento e descobertas em Presidente Prudente com o
             Perentino </p>
-          <p class="card-text">Personagem fantástico e diverttido que caminha por toda a cidade em busca de informações,
+          <p class="card-text">Personagem fantástico e divertido que caminha por toda a cidade em busca de informações,
             moedas e missões </p>
           <p class="card-text">Busque a raridade, o lendário, acumule moedas e skins conforme se diverte com nosso mapa!
           </p>
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          <div class="row"><button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
             aria-controls="offcanvasExample">
             Start
-          </button>
+          </button></div>
+          
         </div>
       </div>
-
+<!-- OffCanva left -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
@@ -51,21 +52,35 @@
               </form>
               <div class="row">
                 <a href="#" class="btn btn-primary mt-4">Entrar no Game</a>
-                <a href="#" class="btn btn-primary mt-4">Registrar</a>
+                <a href="#" class="btn btn-primary mt-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasExample">Registrar</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <!-- off canva right -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Cadastrar no Game ... uhulll</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+   <form action="">
+    <label for="txtnomegamer" class="form-label">Nome</label>
+    <input type="text" name="txtnomegamer" id="txtnomegamer" class="form-control">
+   </form>
+  </div>
+</div>
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div class="carousel-item active" data-bs-interval="2000">
             <img src="./public/images/bg4-banner.png" class="d-block w-100" alt="...">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="2000">
             <img src="./public/images/bg5-banner.jpg" class="d-block w-100" alt="...">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="2000">
             <img src="./public/images/bg2-banner.png" class="d-block w-100" alt="...">
           </div>
         </div>
