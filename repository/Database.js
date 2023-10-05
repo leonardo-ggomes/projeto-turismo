@@ -1,34 +1,18 @@
-var mysql  = require('mysql');
+var mysql  = require('mysql2');
 
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'dbmvc'
-});
+  database : 'bdback'
+}).promise();
 
-function selectPersons(){
-    const personList = []
-
-    connection.connect();
- 
-    connection.query('SELECT * FROM PERSONAGENS', function (error, results, fields) {
-      if (error) throw error;
-      
-      if(results){
-        for(row in results){
-            personList.push(results[row])
-        }
-      }
-
-      return personList
-
-    });
-     
-    connection.end();  
-    
-    // console.log(personList)
+async function selectItems(){
+  const query = await connection.query('select * from item')
+  return query[0]
 }
 
-selectPersons()
+module.exports = {
+  selectItems
+}
 
