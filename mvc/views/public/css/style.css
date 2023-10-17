@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Play&family=Sedgwick+Ave+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play&family=Sedgwick+Ave+Display&display=swap');
 
 *{
     margin: 0px;
@@ -49,3 +49,11 @@ main{
     
 }
 
+.thumbnail{
+  width: 80px;
+}
+.listar .col{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
