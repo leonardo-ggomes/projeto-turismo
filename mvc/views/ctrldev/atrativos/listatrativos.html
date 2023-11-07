@@ -47,7 +47,7 @@
     <main>
         <h2>Listando Pontos Turísticos</h2>
         <div class="row">
-            <button class="btn bg-warning"><a href="addatrativos.html" class="btn"><i class="bi bi-person-plus"></i> Adicionar Ponto Turístico</a></button>
+            <button class="btn bg-warning"><a href="/pagina/addatrativo" class="btn"><i class="bi bi-person-plus"></i> Adicionar Ponto Turístico</a></button>
         </div>
 
         <section class="listar border border-warning m-4" id="lista-atrativos">
@@ -63,25 +63,35 @@
         let elAtrativos = document.querySelector("#lista-atrativos")
 
         //Consome os dados do endpoint
-        const dados = await fetch('http://localhost:3000/getAllAtrativos')
+        const dados = await fetch('http://localhost:3000/atrativos')
         const json = await dados.json()
         let atrativos = await json
         
         //Percorre a lista 
         for(let atrativo of atrativos){
 
-          elAtrativos.innerHTML = `
-          <div class="row m-3 border p-2 text-start rounded">
+          elAtrativos.innerHTML += `
+          <div class="row m-3 border p-2 text-start rounded">              
                 <div class="col border-end border-danger">${atrativo.nome}</div>
                 <div class="col border-end border-danger">${atrativo.latitude} </div>
                 <div class="col border-end border-danger">${atrativo.longitude}</div>
                 <div class="col border-end border-danger"><img src="../public/images/${atrativo.imagem}" class="thumbnail" alt=""></div>
                 <div class="col border-end border-danger">${atrativo.descricao}</div>
-                <div class="col border-start text-center"><button class="btn bg-success"><i class="bi bi-pencil"></i> Update</button></div>
-                <div class="col border-start  text-center"><button class="btn bg-danger"><i class="bi bi-trash"></i> Delete</button></div>
+                <div class="col border-start text-center"><button class="btn bg-success" ><i class="bi bi-pencil"></i> Update</button></div>
+                <div class="col border-start  text-center"><button onclick="apagar(${atrativo.id},'${atrativo.nome}' )" class="btn bg-danger" ><i class="bi bi-trash"></i> Delete</button></div>
             </div>         
           `
         }
+      }   
+
+      async function apagar(id, nome){     
+
+        const dados = await fetch('http://localhost:3000/atrativo/'+id, { method: 'DELETE' })
+        const json = await dados.json()
+        let atrativos = await json
+
+        alert("O "+nome+" foi apagado")
+        location.reload()
       }
 
       carregarAtrativos()
