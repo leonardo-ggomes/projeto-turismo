@@ -15,6 +15,7 @@ module.exports = (app) => {
     app.post("/atrativo", async (req, res) => {        
         const atrativoDAO = new AtrativoDAO()
 
+        //Destructuring
         const {
             txtid: id,
             txtnomeatrat: nome,
@@ -53,9 +54,39 @@ module.exports = (app) => {
         })
     })
 
+    //:id é o parâmetro
+    app.put("/atrativo/:id", async (req, res) =>{
+        const atrativoDAO = new AtrativoDAO()
+        
+        const {
+            nome,
+            descricao,
+            lat,
+            long,
+            imagem,
+            id
+        } = req.body;
+      
+        if(id == req.params.id){
+          const r =  await atrativoDAO.atualizar(nome, descricao,lat, long, imagem, id)
+          res.json({msg: "O total de linhas alteradas: "+r})
+        }
+        else{
+          res.json({msg:"Problema."})
+        }     
+
+    })
+
     app.get("/pagina/listatrativos", (req, res) => {
        res.sendFile(path.resolve('mvc/views/ctrldev/atrativos/listatrativos.html')) 
     }) 
+
+    app.get("/pagina/alteratrativo/:id", async (req, res) =>{
+        
+        const atrativo = new AtrativoDAO()        
+        const r = await atrativo.consultarUm(req.params.id)
+        res.render('atrativos/alteratrativos', { r })
+    })
 
     app.get("/pagina/addatrativo", (req, res) => {
        res.sendFile(path.resolve('mvc/views/ctrldev/atrativos/addatrativos.html')) 

@@ -30,6 +30,25 @@ class AtrativoDAO{
         }
        
         return list_atrativos
+    }
+
+    async consultarUm(id){      
+
+        const query = await this.#db.selectAtrativoId(id)
+
+        const atrativo = new Atrativo()
+
+        if(query){
+            atrativo.id = query[0].id_atrativos
+            atrativo.nome = query[0].nome_atrativo
+            atrativo.latitude = query[0].lat_atrativo
+            atrativo.longitude = query[0].long_atrativo
+            atrativo.descricao = query[0].desc_atrativo
+            atrativo.imagem = query[0].image_atrativo 
+        }
+
+      
+        return atrativo.toJson()
     }    
    
     async cadastrar(nome, imagem, latitude, longitude, descricao){
@@ -49,6 +68,24 @@ class AtrativoDAO{
       return linhasAfetadas.affectedRows
     }
     
+    async atualizar(nome, descricao, lat, long, imagem, id){
+        const atrativo = new Atrativo(nome, lat, long)
+        atrativo.descricao = descricao
+        atrativo.imagem = imagem
+        atrativo.id = id
+
+        const r = await this.#db.updateAtrativo(
+            atrativo.nome,
+            atrativo.latitude,
+            atrativo.longitude,
+            atrativo.descricao,
+            atrativo.imagem,
+            atrativo.id
+        )
+
+        return r.affectedRows;
+
+    }
     
 
 }
